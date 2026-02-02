@@ -1,0 +1,25 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class QuantityMeasurementAppTest {
+
+    @Test
+    void testSameValue() {
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(1.0);
+
+        boolean result = f1.isEqual(f2);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void testDifferentValue() {
+        QuantityMeasurementApp.Feet f1 = new QuantityMeasurementApp.Feet(1.0);
+        QuantityMeasurementApp.Feet f2 = new QuantityMeasurementApp.Feet(2.0);
+
+        boolean result = f1.isEqual(f2);
+
+        assertFalse(result);
+    }
+}
