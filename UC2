@@ -1,0 +1,67 @@
+
+
+
+public class QuantityMeasurementApp2 {
+
+ 
+    public static class Feet {
+        double value;
+
+        Feet(double v) {
+            value = v;
+        }
+
+        boolean isEqual(Feet other) {
+            if (other == null)
+                return false;
+
+            if (value == other.value)
+                return true;
+            else
+                return false;
+        }
+    }
+
+
+    public static class Inches {
+        double value;
+
+        Inches(double v) {
+            value = v;
+        }
+
+        boolean isEqual(Inches other) {
+            if (other == null)
+                return false;
+
+            if (value == other.value)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    
+    public static void demonstrateFeetEquality() {
+        Feet f1 = new Feet(1.0);
+        Feet f2 = new Feet(1.0);
+
+        boolean result = f1.isEqual(f2);
+        System.out.println("Feet Equal: " + result);
+    }
+
+
+    public static void demonstrateInchesEquality() {
+        Inches i1 = new Inches(1.0);
+        Inches i2 = new Inches(1.0);
+
+        boolean result = i1.isEqual(i2);
+        System.out.println("Inches Equal: " + result);
+    }
+
+
+    public static void main(String[] args) {
+        demonstrateFeetEquality();
+        demonstrateInchesEquality();
+    }
+}
