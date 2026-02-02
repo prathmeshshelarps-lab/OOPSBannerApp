@@ -1,0 +1,28 @@
+public class QuantityMeasurementApp {
+
+    static class Feet {
+        double value;
+
+        Feet(double v) {
+            value = v;
+        }
+
+        boolean isEqual(Feet other) {
+            if (value == other.value) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Feet f1 = new Feet(1.0);
+        Feet f2 = new Feet(1.0);
+
+        boolean result = f1.isEqual(f2);
+
+        System.out.println(result);
+    }
+}
