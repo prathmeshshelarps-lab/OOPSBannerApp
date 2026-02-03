@@ -1,0 +1,36 @@
+public class QuantityLength {
+
+    private final double value;
+    private final LengthUnit unit;
+
+    public QuantityLength(double value, LengthUnit unit) {
+        if (value < 0) {
+            throw new IllegalArgumentException("Length cannot be negative");
+        }
+        if (unit == null) {
+            throw new IllegalArgumentException("Unit cannot be null");
+        }
+        this.value = value;
+        this.unit = unit;
+    }
+
+    // Convert any unit to FEET
+    private double convertToFeet() {
+        return this.value * this.unit.getConversionFactor();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        QuantityLength that = (QuantityLength) obj;
+
+        return Double.compare(this.convertToFeet(), that.convertToFeet()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Double.hashCode(convertToFeet());
+    }
+}
