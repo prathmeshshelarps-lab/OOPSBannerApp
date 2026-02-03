@@ -1,0 +1,85 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class QuantityMeasurementApp3Test {
+
+    @Test
+    public void testEquality_FeetToFeet_SameValue() {
+        QuantityLength length1 = new QuantityLength(1.0, LengthUnit.FEET);
+        QuantityLength length2 = new QuantityLength(1.0, LengthUnit.FEET);
+
+        assertTrue(length1.equals(length2));
+    }
+
+    @Test
+    public void testEquality_InchToInch_SameValue() {
+        QuantityLength length1 = new QuantityLength(1.0, LengthUnit.INCH);
+        QuantityLength length2 = new QuantityLength(1.0, LengthUnit.INCH);
+
+        assertTrue(length1.equals(length2));
+    }
+
+    @Test
+    public void testEquality_FeetToInch_EquivalentValue() {
+        QuantityLength length1 = new QuantityLength(1.0, LengthUnit.FEET);
+        QuantityLength length2 = new QuantityLength(12.0, LengthUnit.INCH);
+
+        assertTrue(length1.equals(length2));
+    }
+
+    @Test
+    public void testEquality_InchToFeet_EquivalentValue() {
+        QuantityLength length1 = new QuantityLength(12.0, LengthUnit.INCH);
+        QuantityLength length2 = new QuantityLength(1.0, LengthUnit.FEET);
+
+        assertTrue(length1.equals(length2));
+    }
+
+    @Test
+    public void testEquality_FeetToFeet_DifferentValue() {
+        QuantityLength length1 = new QuantityLength(1.0, LengthUnit.FEET);
+        QuantityLength length2 = new QuantityLength(2.0, LengthUnit.FEET);
+
+        assertFalse(length1.equals(length2));
+    }
+
+    @Test
+    public void testEquality_InchToInch_DifferentValue() {
+        QuantityLength length1 = new QuantityLength(1.0, LengthUnit.INCH);
+        QuantityLength length2 = new QuantityLength(2.0, LengthUnit.INCH);
+
+        assertFalse(length1.equals(length2));
+    }
+
+    @Test
+    public void testEquality_InvalidUnit() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new QuantityLength(1.0, null); // simulating invalid unit
+        });
+
+        assertNotNull(exception);
+    }
+
+    @Test
+    public void testEquality_NullUnit() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new QuantityLength(5.0, null);
+        });
+
+        assertNotNull(exception);
+    }
+
+    @Test
+    public void testEquality_SameReference() {
+        QuantityLength length = new QuantityLength(1.0, LengthUnit.FEET);
+
+        assertTrue(length.equals(length));
+    }
+
+    @Test
+    public void testEquality_NullComparison() {
+        QuantityLength length = new QuantityLength(1.0, LengthUnit.FEET);
+
+        assertFalse(length.equals(null));
+    }
+}
