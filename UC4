@@ -1,0 +1,90 @@
+
+
+public class QuantityMeasurementApp4 {
+
+    // Instance variables
+    private double value;
+    private LengthUnit unit;
+
+    // Enum with conversion factor to base unit (inches)
+    public enum LengthUnit {
+
+        FEET(12.0),
+        INCHES(1.0),
+        YARDS(36.0),          // 1 yard = 36 inches
+        CENTIMETERS(0.393701); // 1 cm = 0.393701 inches
+
+        private final double conversionFactor;
+
+        // Enum constructor
+        LengthUnit(double conversionFactor) {
+            this.conversionFactor = conversionFactor;
+        }
+
+        // Getter
+        public double getConversionFactor() {
+            return conversionFactor;
+        }
+    }
+
+    // Constructor
+    public QuantityMeasurementApp4(double value, LengthUnit unit) {
+        this.value = value;
+        this.unit = unit;
+    }
+
+    // Convert to base unit (inches)
+    private double convertToBaseUnit() {
+
+        double result = value * unit.getConversionFactor();
+
+        // round to 2 decimal places
+        return Math.round(result * 100.0) / 100.0;
+    }
+
+    // Compare two Length objects
+    public boolean compare(QuantityMeasurementApp4 thatLength) {
+
+        return this.convertToBaseUnit() ==
+               thatLength.convertToBaseUnit();
+    }
+
+    // Override equals method
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        QuantityMeasurementApp4 thatLength = (QuantityMeasurementApp4) o;
+
+        return this.compare(thatLength);
+    }
+
+    // Test main
+    public static void main(String[] args) {
+
+    	QuantityMeasurementApp4 length1 = new QuantityMeasurementApp4(1.0, LengthUnit.FEET);
+    	QuantityMeasurementApp4 length2 = new QuantityMeasurementApp4(12.0, LengthUnit.INCHES);
+
+        System.out.println(length1.equals(length2)); // true
+
+        QuantityMeasurementApp4 length3 = new QuantityMeasurementApp4(1.0, LengthUnit.YARDS);
+        QuantityMeasurementApp4 length4 = new QuantityMeasurementApp4(36.0, LengthUnit.INCHES);
+
+        System.out.println(length3.equals(length4)); // true
+
+        QuantityMeasurementApp4 length5 = new QuantityMeasurementApp4(100.0, LengthUnit.CENTIMETERS);
+        QuantityMeasurementApp4 length6 = new QuantityMeasurementApp4(39.3701, LengthUnit.INCHES);
+
+        System.out.println(length5.equals(length6)); // true
+
+        QuantityMeasurementApp4 length7 = new QuantityMeasurementApp4(3.0, LengthUnit.FEET);
+        QuantityMeasurementApp4 length8 = new QuantityMeasurementApp4(1.0, LengthUnit.YARDS);
+
+        System.out.println(length7.equals(length8)); // true
+    }
+}
